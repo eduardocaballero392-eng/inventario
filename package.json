@@ -1,0 +1,35 @@
+{
+  "name": "sistema-inventario-pos",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "build": "node scripts/copy-vendor.js",
+    "postinstall": "node scripts/copy-vendor.js",
+    "db:setup": "node server/db/setup.js",
+    "db:setup:clean": "node server/db/setup.js --clean",
+    "db:reset": "node server/db/setup.js --reset"
+  },
+  "license": "UNLICENSED",
+  "description": "Sistema de inventario y punto de venta para bodegas y minimarkets",
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "bcryptjs": "^3.0.3",
+    "chart.js": "^4.6.1",
+    "compression": "^1.8.2",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.9",
+    "lucide": "^1.77.0",
+    "motion": "^14.14.0",
+    "mysql2": "^3.24.6",
+    "xlsx": "^0.18.5"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  }
+}
