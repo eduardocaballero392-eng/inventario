@@ -1,0 +1,117 @@
+═══════════════════════════════════════════════════════════════
+  CÓMO CREAR EL EJECUTABLE .EXE DEL SISTEMA DE INVENTARIO
+═══════════════════════════════════════════════════════════════
+
+📋 PASOS PARA CREAR EL .EXE:
+
+1. Busca el archivo: CREAR-EXE-ADMIN.bat
+
+2. Haz CLIC DERECHO sobre él
+
+3. Selecciona: "Ejecutar como administrador"
+
+4. Si aparece una ventana de control de cuentas de usuario (UAC),
+   haz clic en "Sí"
+
+5. Espera de 5 a 10 minutos (descarga y empaqueta TODO el sistema)
+
+6. Al finalizar, busca en la carpeta "dist\" el archivo:
+   📦 Sistema de Inventario 1.0.0.exe
+
+
+═══════════════════════════════════════════════════════════════
+  ¿POR QUÉ NECESITA PERMISOS DE ADMINISTRADOR?
+═══════════════════════════════════════════════════════════════
+
+Windows requiere permisos especiales para:
+- Crear enlaces simbólicos
+- Descargar herramientas de empaquetado
+- Firmar el ejecutable (aunque no lo firmemos realmente)
+
+
+═══════════════════════════════════════════════════════════════
+  ¿QUÉ TIPO DE .EXE SE CREA?
+═══════════════════════════════════════════════════════════════
+
+✅ EJECUTABLE PORTABLE (sin instalador)
+
+Características:
+- NO necesita instalación
+- Lo copias a cualquier PC y ya funciona
+- Doble clic y se abre directamente
+- Incluye Node.js y todas las librerías
+
+IMPORTANTE:
+- La PC donde lo uses SÍ necesita MySQL instalado
+- Debe tener WAMP o XAMPP ejecutándose
+
+
+═══════════════════════════════════════════════════════════════
+  ALTERNATIVAS SI NO PUEDES EJECUTAR COMO ADMIN
+═══════════════════════════════════════════════════════════════
+
+Si no tienes permisos de administrador en tu PC:
+
+OPCIÓN 1: Usar APLICACION.bat
+- No necesita permisos especiales
+- Funciona como aplicación de escritorio
+- Solo haz doble clic en APLICACION.bat
+
+OPCIÓN 2: Usar INICIAR.bat
+- Abre el sistema en el navegador
+- No necesita permisos especiales
+- Funciona perfectamente igual
+
+
+═══════════════════════════════════════════════════════════════
+  COMPARACIÓN DE OPCIONES
+═══════════════════════════════════════════════════════════════
+
+┌────────────────────┬──────────────┬──────────────┬────────────┐
+│                    │ .EXE         │ APLICACION   │ INICIAR    │
+│                    │ PORTABLE     │ .bat         │ .bat       │
+├────────────────────┼──────────────┼──────────────┼────────────┤
+│ Permisos admin     │ SÍ (crearlo) │ NO           │ NO         │
+│ Instalar en otras  │ SÍ           │ NO           │ NO         │
+│ PC                 │              │              │            │
+│ Experiencia        │ App nativa   │ App nativa   │ Navegador  │
+│ Fácil de usar      │ ★★★★★        │ ★★★★★        │ ★★★★☆      │
+│ Distribución       │ ★★★★★        │ ★☆☆☆☆        │ ★☆☆☆☆      │
+└────────────────────┴──────────────┴──────────────┴────────────┘
+
+
+═══════════════════════════════════════════════════════════════
+  RECOMENDACIÓN FINAL
+═══════════════════════════════════════════════════════════════
+
+🎯 PARA USO PERSONAL (solo tú):
+   → Usa APLICACION.bat (más fácil, sin complicaciones)
+
+🎯 PARA DISTRIBUIR A OTRAS PCS:
+   → Crea el .EXE con CREAR-EXE-ADMIN.bat
+   → Lo copias a otras computadoras
+   → Solo necesitan MySQL, nada más
+
+
+═══════════════════════════════════════════════════════════════
+  ¿PROBLEMAS O DUDAS?
+═══════════════════════════════════════════════════════════════
+
+Error: "No tienes permisos"
+→ Asegúrate de hacer CLIC DERECHO → Ejecutar como administrador
+
+Error: "Cannot create symbolic link"
+→ Necesitas permisos de admin, usa la opción con clic derecho
+
+Tarda mucho tiempo
+→ Es normal, 5-10 minutos. Está descargando Electron completo
+
+No tengo permisos de admin
+→ Usa APLICACION.bat en su lugar, funciona igual de bien
+
+
+═══════════════════════════════════════════════════════════════
+
+¡Listo! Ahora ya sabes cómo crear tu ejecutable .EXE 🚀
+
+═══════════════════════════════════════════════════════════════

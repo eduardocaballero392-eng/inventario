@@ -3,3 +3,6 @@ node_modules/
 public/vendor/
 .vercel/
 *.log
+
+# Builds de Electron (pesados, no subir)
+dist/

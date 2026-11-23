@@ -1,7 +1,8 @@
 {
   "name": "sistema-inventario-pos",
   "version": "1.0.0",
-  "main": "server/index.js",
+  "author": "Sistema de Inventario",
+  "main": "electron/main.js",
   "scripts": {
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
@@ -9,7 +10,11 @@
     "postinstall": "node scripts/copy-vendor.js",
     "db:setup": "node server/db/setup.js",
     "db:setup:clean": "node server/db/setup.js --clean",
-    "db:reset": "node server/db/setup.js --reset"
+    "db:reset": "node server/db/setup.js --reset",
+    "electron": "electron .",
+    "electron:build": "electron-builder",
+    "app": "electron .",
+    "crear-app": "electron-builder"
   },
   "license": "UNLICENSED",
   "description": "Sistema de inventario y punto de venta para bodegas y minimarkets",
@@ -27,6 +32,37 @@
     "motion": "^14.14.0",
     "mysql2": "^3.24.6",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.inventario.pos",
+    "productName": "Sistema de Inventario",
+    "asar": false,
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "icon": "public/img/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "electron/**/*",
+      "server/**/*",
+      "public/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
   },
   "private": true,
   "engines": {

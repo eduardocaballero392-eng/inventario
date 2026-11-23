@@ -1,0 +1,159 @@
+═══════════════════════════════════════════════════════════════
+  🚀 SISTEMA DE INVENTARIO Y VENTAS
+  GUÍA DE INICIO RÁPIDO
+═══════════════════════════════════════════════════════════════
+
+📋 SI ACABAS DE RECIBIR ESTE SISTEMA:
+
+1. Asegúrate de tener:
+   ✓ Windows 7 o superior
+   ✓ Node.js instalado (https://nodejs.org)
+   ✓ MySQL ejecutándose (WAMP o XAMPP)
+
+2. Ejecuta en ORDEN:
+   ① INSTALAR.bat           (espera 3-5 minutos)
+   ② CREAR-ACCESO-DIRECTO.bat
+   ③ Doble clic en el icono del escritorio
+
+3. Inicia sesión:
+   Usuario: admin
+   Contraseña: admin123
+
+
+═══════════════════════════════════════════════════════════════
+  📂 ARCHIVOS PRINCIPALES
+═══════════════════════════════════════════════════════════════
+
+INSTALAR.bat
+  → Instala el sistema y crea la base de datos
+  → Ejecutar PRIMERO y solo UNA VEZ
+
+CREAR-ACCESO-DIRECTO.bat
+  → Crea un icono en el escritorio
+  → Ejecutar DESPUÉS de instalar
+
+APLICACION.bat
+  → Abre el sistema como aplicación de escritorio
+  → Alternativa al acceso directo
+
+INICIAR.bat
+  → Abre el sistema en el navegador
+  → Útil para probar o preferencia personal
+
+
+═══════════════════════════════════════════════════════════════
+  ⚙️ CONFIGURACIÓN DE MYSQL
+═══════════════════════════════════════════════════════════════
+
+CONFIGURACIÓN POR DEFECTO (WAMP/XAMPP):
+✓ Host: localhost
+✓ Usuario: root
+✓ Contraseña: (vacía)
+✓ Puerto: 3306
+
+SI TU MYSQL USA CONTRASEÑA:
+1. Abre el archivo: .env
+2. Busca la línea: DB_PASSWORD=
+3. Escribe tu contraseña: DB_PASSWORD=tu_contraseña
+4. Guarda y cierra
+5. Vuelve a ejecutar INSTALAR.bat
+
+
+═══════════════════════════════════════════════════════════════
+  👤 USUARIOS DEL SISTEMA
+═══════════════════════════════════════════════════════════════
+
+ADMINISTRADOR:
+  Usuario: admin
+  Contraseña: admin123
+  Permisos: Todos
+
+CAJERO:
+  Usuario: cajero
+  Contraseña: cajero123
+  Permisos: Ventas, productos, reportes
+
+ALMACENERO:
+  Usuario: almacen
+  Contraseña: almacen123
+  Permisos: Inventario, productos, proveedores
+
+⚠️ IMPORTANTE: Cambia las contraseñas desde el módulo
+               "Usuarios" una vez que inicies sesión
+
+
+═══════════════════════════════════════════════════════════════
+  ❌ PROBLEMAS COMUNES
+═══════════════════════════════════════════════════════════════
+
+"Node.js no está instalado"
+→ Descarga de: https://nodejs.org (versión LTS)
+→ Instala y reinicia el instalador
+
+"Error al crear la base de datos"
+→ Verifica que MySQL esté ejecutándose
+→ WAMP debe mostrar icono VERDE
+→ XAMPP debe tener MySQL en "Start"
+
+"Puerto 3000 en uso"
+→ Cierra otras instancias del sistema
+→ Reinicia tu computadora
+
+"No se encuentra .env"
+→ Ejecuta INSTALAR.bat de nuevo
+
+"El acceso directo no funciona"
+→ Ejecuta APLICACION.bat directamente
+
+
+═══════════════════════════════════════════════════════════════
+  🌐 ACCEDER DESDE CELULAR/TABLET
+═══════════════════════════════════════════════════════════════
+
+Si quieres usar el sistema desde otro dispositivo:
+
+1. Ejecuta INICIAR.bat en la PC
+2. Mira la IP que aparece en pantalla
+   Ejemplo: http://192.168.1.81:3000
+3. Abre esa dirección en el navegador del celular
+4. Asegúrate de estar en la misma red WiFi
+
+
+═══════════════════════════════════════════════════════════════
+  📚 MÁS INFORMACIÓN
+═══════════════════════════════════════════════════════════════
+
+README-DISTRIBUCION.txt
+  → Guía para distribuir a otras computadoras
+
+GUIA-DISTRIBUCION.md
+  → Documentación completa y detallada
+
+INSTRUCCIONES-APP.md
+  → Información sobre la aplicación de escritorio
+
+
+═══════════════════════════════════════════════════════════════
+  💡 CONSEJOS
+═══════════════════════════════════════════════════════════════
+
+✓ Haz respaldo de la base de datos regularmente
+  (Desde phpMyAdmin → Exportar → SQL)
+
+✓ Cambia las contraseñas por defecto
+
+✓ No borres la carpeta node_modules
+
+✓ No compartas el archivo .env (tiene tu configuración)
+
+✓ Si encuentras errores, revisa los mensajes
+  en la consola (F12 en la aplicación)
+
+
+═══════════════════════════════════════════════════════════════
+
+¡Listo para empezar! 🎉
+
+Ejecuta INSTALAR.bat y sigue las instrucciones.
+
+═══════════════════════════════════════════════════════════════
