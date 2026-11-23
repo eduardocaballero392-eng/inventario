@@ -11,9 +11,9 @@ const ALL = ['admin', 'cajero', 'almacenero'];
 
 /** Menú y permisos por rol. */
 export const ROUTES = [
-  { path: 'dashboard', label: 'Panel principal', icon: 'layout-dashboard', roles: ALL, section: 'General' },
-  { path: 'pos', label: 'Punto de venta', icon: 'scan-barcode', roles: ['admin', 'cajero'], section: 'General' },
-  { path: 'sales', label: 'Ventas', icon: 'receipt-text', roles: ['admin', 'cajero'], section: 'General' },
+  { path: 'dashboard', label: 'Inicio', icon: 'layout-dashboard', roles: ALL, section: 'General' },
+  { path: 'pos', label: 'Ventas', icon: 'scan-barcode', roles: ['admin', 'cajero'], section: 'General' },
+  { path: 'sales', label: 'Reportes', icon: 'receipt-text', roles: ['admin', 'cajero'], section: 'General' },
   { path: 'products', label: 'Productos', icon: 'package', roles: ALL, section: 'Inventario' },
   { path: 'stock', label: 'Control de stock', icon: 'arrow-left-right', roles: ['admin', 'almacenero'], section: 'Inventario' },
   { path: 'suppliers', label: 'Proveedores', icon: 'truck', roles: ['admin', 'almacenero'], section: 'Inventario' },

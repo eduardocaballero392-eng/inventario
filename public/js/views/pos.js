@@ -47,10 +47,6 @@ export async function render(root) {
         <div class="cart-items" id="cart"></div>
         <div class="cart-summary">
           <div class="sum-row"><span>Subtotal</span><span id="sGross">${money(0)}</span></div>
-          <div class="sum-row" style="align-items:center"><span>Descuento</span>
-            <span class="input-group" style="width:130px"><span class="addon" style="padding:0 8px">${esc(state.settings?.currency_symbol || 'S/')}</span><input class="input" id="discount" type="number" min="0" step="0.10" value="" placeholder="0.00" style="height:32px;text-align:right"></span>
-          </div>
-          <div class="sum-row"><span id="taxLabel">${esc(state.settings?.tax_name || 'IGV')}</span><span id="sTax">${money(0)}</span></div>
           <div class="sum-total"><span>Total</span><strong id="sTotal">${money(0)}</strong></div>
         </div>
         <div class="cart-actions">
@@ -214,8 +210,6 @@ export async function render(root) {
 
     const t = totals();
     $('#sGross').textContent = money(t.gross);
-    $('#sTax').textContent = money(t.tax);
-    $('#taxLabel').textContent = `${state.settings?.tax_name || 'IGV'} (${state.settings?.tax_rate || 18}%)${state.settings?.tax_included !== '0' ? ' incluido' : ''}`;
     const totalEl = $('#sTotal');
     if (totalEl.textContent !== money(t.total)) {
       totalEl.textContent = money(t.total);
@@ -265,13 +259,6 @@ export async function render(root) {
   });
   search.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); onEnter(); } });
 
-  $('#discount').addEventListener('input', (e) => {
-    discount = Math.max(0, Number(e.target.value) || 0);
-    const t = totals();
-    if (discount > t.gross) { e.target.classList.add('invalid'); } else e.target.classList.remove('invalid');
-    drawCart();
-  });
-
   $('#clearBtn').onclick = clearCart;
   $('#holdBtn').onclick = () => withLoading($('#holdBtn'), async () => { await loadCatalog(); toast('success', 'Catálogo actualizado'); });
   $('#payBtn').onclick = checkout;
@@ -281,7 +268,6 @@ export async function render(root) {
     if (!(await confirmDialog({ title: 'Vaciar carrito', message: '¿Quitar todos los productos de la venta actual?', confirmText: 'Vaciar', tone: 'warning' }))) return;
     cart = [];
     discount = 0;
-    $('#discount').value = '';
     save();
     drawCart();
     search.focus();
@@ -291,7 +277,7 @@ export async function render(root) {
   function checkout() {
     if (!cart.length) return;
     const t = totals();
-    if (discount > t.gross) return toast('warning', 'Descuento inválido', 'El descuento no puede superar el subtotal');
+    if (discount > t.gross) return;
     let method = 'efectivo';
 
     const quick = [...new Set([Math.ceil(t.total), Math.ceil(t.total / 5) * 5, Math.ceil(t.total / 10) * 10, 20, 50, 100, 200])]
@@ -380,7 +366,6 @@ export async function render(root) {
         m.close();
         cart = [];
         discount = 0;
-        $('#discount').value = '';
         save();
         drawCart();
         success(sale);

@@ -3,8 +3,8 @@
  */
 import { api } from '../api.js';
 import { state } from '../state.js';
-import { $, $$, esc, icon, icons, money, num, fmtDate, relTime, shortDay, today, animateIn, countUp, emptyState, PAYMENT, MOVEMENT, toastError } from '../ui.js';
-import { salesAreaChart, barChart, theme, formatUnits } from '../charts.js';
+import { $, $$, esc, icon, icons, money, num, fmtDate, relTime, shortDay, today, animateIn, countUp, emptyState, PAYMENT, toastError } from '../ui.js';
+import { salesAreaChart, theme } from '../charts.js';
 
 let days = 7;
 
@@ -36,19 +36,7 @@ export async function render(root) {
         <ul class="list" id="topList"><li class="list-item"><div class="skeleton sk-line w-full"></div></li></ul>
       </div>
     </div>
-    <div class="grid grid-2 mb">
-      <div class="card">
-        <div class="card-head">
-          <div><h3>Stock crítico</h3><div class="hint">Productos en o por debajo del stock mínimo</div></div>
-          <a href="#/products?status=alert" class="btn btn-ghost btn-sm">Ver todos${icon('arrow-right')}</a>
-        </div>
-        <div class="card-body" id="criticalBody"><div class="chart-box sm"><canvas id="criticalChart" role="img" aria-label="Productos con stock crítico"></canvas></div></div>
-      </div>
-      <div class="card">
-        <div class="card-head"><div><h3>Movimientos de stock</h3><div class="hint">Entradas, mermas y ajustes recientes</div></div></div>
-        <ul class="list" id="movList"></ul>
-      </div>
-    </div>
+
     <div class="card">
       <div class="card-head">
         <div><h3>Últimas ventas</h3></div>
@@ -72,8 +60,6 @@ export async function render(root) {
     renderAlerts(data.kpis);
     renderSalesChart(data.salesChart);
     renderTop(data.topProducts);
-    renderCritical(data.criticalStock);
-    renderMovements(data.recentMovements);
     renderRecent(data.recentSales);
     icons();
   }
@@ -88,7 +74,7 @@ export async function render(root) {
       showValue
         ? { tone: 'cyan', icon: 'warehouse', label: 'Valor del inventario', value: k.inventory_cost, fmt: money, foot: `A precio de venta: ${money(k.inventory_retail)}` }
         : { tone: 'cyan', icon: 'package', label: 'Productos activos', value: k.total_products, fmt: num, foot: `${num(k.units)} unidades en stock` },
-      { tone: k.low_stock + k.out_of_stock ? 'red' : 'green', icon: 'triangle-alert', label: 'Stock bajo / agotado', value: k.low_stock + k.out_of_stock, fmt: num, foot: `${num(k.out_of_stock)} agotado(s) · ${num(k.total_products)} productos`, href: '#/products?status=alert' },
+
     ];
     $('#kpis').innerHTML = cards.map((c) => `
       <${c.href ? `a href="${c.href}"` : 'div'} class="card kpi tone-${c.tone}">
@@ -134,37 +120,6 @@ export async function render(root) {
         </li>`).join('')
       : `<li>${emptyState({ iconName: 'chart-bar', title: 'Aún no hay ventas este mes' })}</li>`;
     animateIn($$('#topList .list-item'), { y: 8 });
-  }
-
-  function renderCritical(rows) {
-    if (!rows.length) {
-      $('#criticalBody').innerHTML = emptyState({ iconName: 'circle-check', title: '¡Todo en orden!', text: 'Ningún producto está por debajo del stock mínimo.' });
-      return;
-    }
-    const t = theme();
-    charts.critical = barChart($('#criticalChart'), rows.map((r) => r.name), rows.map((r) => r.stock), {
-      horizontal: true,
-      valueFormat: formatUnits,
-      color: rows.map((r) => (r.stock <= 0 ? t.danger : t.warning)),
-      tooltipTitle: (items) => {
-        const r = rows[items[0].dataIndex];
-        return `${r.name} — mínimo ${r.min_stock}`;
-      },
-    });
-  }
-
-  function renderMovements(rows) {
-    $('#movList').innerHTML = rows.length
-      ? rows.map((m) => {
-        const t = MOVEMENT[m.type] || {};
-        const positive = m.quantity > 0;
-        return `<li class="list-item">
-          <span class="list-icon" style="background:var(--${positive ? 'success' : 'danger'}-soft);color:var(--${positive ? 'success' : 'danger'})">${icon(t.icon || 'circle')}</span>
-          <div class="grow"><strong>${esc(m.product_name)}</strong><small>${t.label} · ${esc(m.reason || '')} · ${esc(m.user_name || '')}</small></div>
-          <div style="text-align:right"><strong class="${positive ? 'text-success' : 'text-danger'} tabular">${positive ? '+' : ''}${num(m.quantity)}</strong><small class="text-faint">${relTime(m.created_at)}</small></div>
-        </li>`;
-      }).join('')
-      : `<li>${emptyState({ iconName: 'arrow-left-right', title: 'Sin movimientos recientes' })}</li>`;
   }
 
   function renderRecent(rows) {

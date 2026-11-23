@@ -16,7 +16,7 @@ if (!fs.existsSync(path.join(config.PUBLIC_DIR, 'vendor', 'chart.js'))) {
   require('../scripts/copy-vendor');
 }
 
-app.use(express.static(config.PUBLIC_DIR, { index: 'index.html', maxAge: '1h' }));
+app.use(express.static(config.PUBLIC_DIR, { index: 'index.html', maxAge: 0, etag: false, lastModified: false }));
 // SPA: cualquier otra ruta GET devuelve index.html
 app.use((req, res, next) => {
   if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
